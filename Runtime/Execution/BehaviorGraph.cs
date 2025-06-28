@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.Behavior.GraphFramework;
 using Unity.Properties;
 using UnityEngine;
 using Status = Unity.Behavior.Node.Status;
 
+[assembly: InternalsVisibleTo("Assembly-CSharp-Editor")]
+[assembly: InternalsVisibleTo("Assembly-CSharp")]
 namespace Unity.Behavior
 {
     /// <summary>

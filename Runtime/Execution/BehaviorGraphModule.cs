@@ -233,7 +233,7 @@ namespace Unity.Behavior
         internal void AwakeNode(Node node)
         {
             if (m_NodesToEnd.Contains(node)
-                || m_NodesToTick.Contains(node)
+                // || m_NodesToTick.Contains(node)
                 || !m_ActiveNodes.Contains(node)
                 || node.CurrentStatus is not (Status.Waiting or Status.Running))
             {
@@ -241,7 +241,15 @@ namespace Unity.Behavior
             }
             m_NodesToTick.Insert(0, node);
             node.SetCurrentStatus(Status.Running);
+            var status = node.Update();
+            node.SetCurrentStatus(status);
+            if (status == Status.Success || status == Status.Failure)
+            {
+                EndNode(node);
+                node.AwakeParents();
+            }
             m_NodesChanged = true;
+            OnGraphStatusChange?.Invoke(this);
         }
 
         private void RebuildNodeLists()

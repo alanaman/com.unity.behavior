@@ -50,7 +50,7 @@ namespace Unity.Behavior
     public class BehaviorGraphAgent : MonoBehaviour, ISerializationCallbackReceiver
 #endif
     {
-        [SerializeReference] private BehaviorGraph m_Graph;
+        [SerializeReference] protected BehaviorGraph m_Graph;
 
         /// <summary>
         /// <para>The graph of behaviours to be executed by the agent.</para>
@@ -138,7 +138,7 @@ namespace Unity.Behavior
 #endif
 
 
-        private void Awake()
+        protected virtual void Awake()
         {
             Init();
         }
@@ -618,7 +618,7 @@ namespace Unity.Behavior
         /// <summary>
         /// Begins execution of the agent's behavior graph.
         /// </summary>
-        public void Start()
+        public virtual void Start()
         {
             if (m_Graph == null) return;
 #if NETCODE_FOR_GAMEOBJECTS
@@ -661,7 +661,7 @@ namespace Unity.Behavior
         /// <summary>
         /// Ends the execution of the agent's behavior graph.
         /// </summary>
-        public void End()
+        public virtual void End()
         {
             if (m_Graph == null || m_Graph.RootGraph == null) return;
 #if NETCODE_FOR_GAMEOBJECTS
@@ -715,7 +715,7 @@ namespace Unity.Behavior
         /// <summary>
         /// Ticks the agent's behavior graph and initializes and starts the graph if necessary.
         /// </summary>
-        public void Update()
+        public virtual void Update()
         {
             if (m_Graph == null || m_Graph.RootGraph == null)
                 return;
