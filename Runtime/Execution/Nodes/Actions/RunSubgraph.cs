@@ -19,6 +19,7 @@ namespace Unity.Behavior
             {
                 return Status.Failure;
             }
+            Subgraph.Root.AddParent(this);
             return Subgraph.StartNode(Subgraph.Root) switch
             {
                 Status.Success => Status.Success,
@@ -30,7 +31,7 @@ namespace Unity.Behavior
         /// <inheritdoc cref="OnUpdate" />
         protected override Status OnUpdate()
         {
-            Subgraph.Tick();
+            // Subgraph.Tick();
             return Subgraph.Root.CurrentStatus switch
             {
                 Status.Success => Status.Success,

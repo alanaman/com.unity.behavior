@@ -46,6 +46,7 @@ namespace Unity.Behavior
             return childStatus switch
             {
                 Status.Success => childIndex + 1 >= Children.Count ? Status.Success : Status.Running,
+                Status.Failure => childIndex + 1 >= Children.Count ? Status.Failure : Status.Running,
                 Status.Running => Status.Waiting,
                 _ => childStatus
             };

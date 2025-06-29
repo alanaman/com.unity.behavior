@@ -234,7 +234,7 @@ namespace Unity.Behavior
         {
             if (m_NodesToEnd.Contains(node)
                 // || m_NodesToTick.Contains(node)
-                || !m_ActiveNodes.Contains(node)
+                // || !m_ActiveNodes.Contains(node)
                 || node.CurrentStatus is not (Status.Waiting or Status.Running))
             {
                 return;
