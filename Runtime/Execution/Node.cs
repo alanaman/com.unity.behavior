@@ -192,6 +192,7 @@ namespace Unity.Behavior
         /// <inheritdoc cref="BehaviorGraphModule.AwakeNode"/>
         protected void AwakeNode(Node node)
         {
+            if(node == null) return;
             Graph.AwakeNode(node);
         }
 
